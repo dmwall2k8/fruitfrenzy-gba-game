@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Play GBA Game</title>
     <!-- Load EmulatorJS -->
-    <script src="https://github.com/ethanaobrien/emulatorjs/tree/main/loader.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@latest/loader.js"></script>
 </head>
 <body>
     <h1>Play GBA Game</h1>
@@ -13,10 +13,10 @@
     <div id="emulator-container"></div>
 
     <script>
-        EJS_player = '#emulator-container'; // Container for the emulator
+        EJS_player = '#emulator-container';  // Container for the emulator
         EJS_biosUrl = 'https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@latest/bios/';
         EJS_gameUrl = 'https://drive.google.com/file/d/191afq_En4qt34B4dCxnilQl7sYHBmdMF/view?usp=sharing';  // Replace this with the external ROM link
-        EJS_core = 'gba';  // Specify the emulator core (GBA in this case)
+        EJS_core = 'gba';  // Specify the emulator core (GBA)
         EJS_pathtodata = 'https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@latest/data/';
     </script>
 </body>
