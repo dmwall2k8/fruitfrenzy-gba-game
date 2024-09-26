@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Play and Download GBA Game</title>
     <!-- Load GBA.js -->
-    <script src="https://cdn.jsdelivr.net/gh/endrift/gbajs/gbajs.js"></script>
+    <script src="https://endrift.github.io/gbajs/"></script>
 </head>
 <body>
     <h1>Play and Download GBA Game</h1>
@@ -22,22 +22,41 @@
     <br><br>
     <canvas id="screen" width="240" height="160" style="border: 1px solid black;"></canvas>
 
+    <!-- Status message for loading feedback -->
+    <p id="status"></p>
+
     <script>
         // Initialize the GBA emulator
         var gba = new GameBoyAdvance();
         gba.setCanvas(document.getElementById('screen'));
+
+        // Show status updates in the paragraph
+        var statusElement = document.getElementById('status');
 
         // Add event listener to the "Play Game" button
         document.getElementById('playButton').addEventListener('click', function() {
             // Direct link to the ROM file (replace YOUR_ROM_FILE_ID with your actual file ID)
             var romUrl = 'https://drive.google.com/uc?export=download&id=191afq_En4qt34B4dCxnilQl7sYHBmdMF'; // Replace with your direct ROM link
 
+            statusElement.textContent = 'Loading game...';
+
             // Fetch the ROM and start the emulator
             fetch(romUrl)
-                .then(response => response.arrayBuffer())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.arrayBuffer();
+                })
                 .then(buffer => gba.loadRomFromFile(buffer))
-                .then(() => gba.runStable())
-                .catch(err => console.error('Failed to load ROM:', err));
+                .then(() => {
+                    statusElement.textContent = 'Game loaded! Running...';
+                    gba.runStable();
+                })
+                .catch(err => {
+                    statusElement.textContent = 'Failed to load ROM. See console for details.';
+                    console.error('Failed to load ROM:', err);
+                });
         });
     </script>
 </body>
