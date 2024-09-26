@@ -3,29 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Load GBA.js -->
-    <script src="https://endrift.github.io/gbajs/"></script>
+    <title>Download GBA Game</title>
 </head>
 <body>
-    <h1>Play GBA Game</h1>
+    <h1>Download GBA Game</h1>
+    
+    <!-- Button to download the game -->
+    <a href="https://drive.google.com/uc?export=download&id=191afq_En4qt34B4dCxnilQl7sYHBmdMF" download>
+        <button>Download GBA Game</button>
+    </a>
 
-    <!-- Canvas for the GBA game -->
-    <canvas id="screen" width="240" height="160" style="border: 1px solid black;"></canvas>
-
-    <script>
-        // Initialize the GBA emulator
-        var gba = new GameBoyAdvance();
-        gba.setCanvas(document.getElementById('screen'));
-
-        // Load ROM from the direct download link (ensure the link is correct)
-        var romUrl = 'https://drive.google.com/uc?export=download&id=191afq_En4qt34B4dCxnilQl7sYHBmdMF';  // Replace with your direct ROM link
-
-        // Fetch the ROM and start the emulator
-        fetch(romUrl)
-            .then(response => response.arrayBuffer())
-            .then(buffer => gba.loadRomFromFile(buffer))
-            .then(() => gba.runStable())
-            .catch(err => console.error('Failed to load ROM:', err));
-    </script>
 </body>
 </html>
