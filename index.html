@@ -4,20 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Play GBA Game</title>
-    <!-- Load EmulatorJS -->
-    <script src="https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@latest/loader.js"></script>
+    <!-- Load GBA.js -->
+    <script src="https://cdn.jsdelivr.net/gh/endrift/gbajs/gbajs.js"></script>
 </head>
 <body>
     <h1>Play GBA Game</h1>
-    <!-- Emulator Container -->
-    <div id="emulator-container" style="width: 240px; height: 160px;"></div>
+    
+    <!-- Canvas to display the game -->
+    <canvas id="screen" width="240" height="160"></canvas>
 
     <script>
-        EJS_player = '#emulator-container';  // Container for the emulator
-        EJS_biosUrl = 'https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@latest/bios/';
-        EJS_gameUrl = 'https://drive.google.com/uc?export=download&id=191afq_En4qt34B4dCxnilQl7sYHBmdMF';  // Replace this with the external ROM link
-        EJS_core = 'gba';  // Specify the emulator core (GBA)
-        EJS_pathtodata = 'https://cdn.jsdelivr.net/gh/ethanaobrien/emulatorjs@latest/data/';
+        // Initialize GBA emulator
+        var gba = new GameBoyAdvance();
+        gba.setCanvas(document.getElementById('screen'));
+
+        // Load the ROM from the file or URL (direct link to your GBA ROM)
+        gba.loadRomFromFile('https://drive.google.com/uc?export=download&id=191afq_En4qt34B4dCxnilQl7sYHBmdMF');
+        
+        // Start the emulator
+        gba.runStable();
     </script>
 </body>
 </html>
+
