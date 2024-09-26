@@ -1,18 +1,22 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Play GBA Game</title>
+    <title>Play and Download GBA Game</title>
     <!-- Load GBA.js -->
     <script src="https://cdn.jsdelivr.net/gh/endrift/gbajs/gbajs.js"></script>
 </head>
 <body>
-    <h1>Play GBA Game</h1>
+    <h1>Play and Download GBA Game</h1>
 
-    <!-- Button to load and play the game -->
+    <!-- Button to play the game -->
     <button id="playButton">Play Game</button>
+    
+    <!-- Button to download the game -->
+    <a id="downloadLink" href="https://drive.google.com/uc?export=download&id=191afq_En4qt34B4dCxnilQl7sYHBmdMF" download>
+        <button>Download Game</button>
+    </a>
 
     <!-- Canvas for the GBA game -->
     <br><br>
@@ -23,9 +27,9 @@
         var gba = new GameBoyAdvance();
         gba.setCanvas(document.getElementById('screen'));
 
-        // Add event listener to the button
+        // Add event listener to the "Play Game" button
         document.getElementById('playButton').addEventListener('click', function() {
-            // Direct link to the ROM file
+            // Direct link to the ROM file (replace YOUR_ROM_FILE_ID with your actual file ID)
             var romUrl = 'https://drive.google.com/uc?export=download&id=191afq_En4qt34B4dCxnilQl7sYHBmdMF'; // Replace with your direct ROM link
 
             // Fetch the ROM and start the emulator
