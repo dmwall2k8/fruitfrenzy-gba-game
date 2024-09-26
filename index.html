@@ -9,21 +9,24 @@
 </head>
 <body>
     <h1>Play GBA Game</h1>
-    
-    <!-- Canvas to display the game -->
-    <canvas id="screen" width="240" height="160"></canvas>
+
+    <!-- Canvas for the GBA game -->
+    <canvas id="screen" width="240" height="160" style="border: 1px solid black;"></canvas>
 
     <script>
-        // Initialize GBA emulator
+        // Initialize the GBA emulator
         var gba = new GameBoyAdvance();
         gba.setCanvas(document.getElementById('screen'));
 
-        // Load the ROM from the file or URL (direct link to your GBA ROM)
-        gba.loadRomFromFile('https://drive.google.com/uc?export=download&id=191afq_En4qt34B4dCxnilQl7sYHBmdMF');
-        
-        // Start the emulator
-        gba.runStable();
+        // Load ROM from the direct download link (ensure the link is correct)
+        var romUrl = 'https://drive.google.com/uc?export=download&id=191afq_En4qt34B4dCxnilQl7sYHBmdMF';  // Replace with your direct ROM link
+
+        // Fetch the ROM and start the emulator
+        fetch(romUrl)
+            .then(response => response.arrayBuffer())
+            .then(buffer => gba.loadRomFromFile(buffer))
+            .then(() => gba.runStable())
+            .catch(err => console.error('Failed to load ROM:', err));
     </script>
 </body>
 </html>
-
