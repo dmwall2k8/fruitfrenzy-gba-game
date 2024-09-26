@@ -1,17 +1,40 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download GBA Game</title>
+    <title>Play GBA Game</title>
+    <!-- Load GBA.js -->
+    <script src="https://cdn.jsdelivr.net/gh/endrift/gbajs/gbajs.js"></script>
 </head>
 <body>
-    <h1>Download GBA Game</h1>
-    
-    <!-- Button to download the game -->
-    <a href="https://drive.google.com/uc?export=download&id=191afq_En4qt34B4dCxnilQl7sYHBmdMF" download>
-        <button>Download GBA Game</button>
-    </a>
+    <h1>Play GBA Game</h1>
 
+    <!-- Button to load and play the game -->
+    <button id="playButton">Play Game</button>
+
+    <!-- Canvas for the GBA game -->
+    <br><br>
+    <canvas id="screen" width="240" height="160" style="border: 1px solid black;"></canvas>
+
+    <script>
+        // Initialize the GBA emulator
+        var gba = new GameBoyAdvance();
+        gba.setCanvas(document.getElementById('screen'));
+
+        // Add event listener to the button
+        document.getElementById('playButton').addEventListener('click', function() {
+            // Direct link to the ROM file
+            var romUrl = 'https://drive.google.com/uc?export=download&id=191afq_En4qt34B4dCxnilQl7sYHBmdMF'; // Replace with your direct ROM link
+
+            // Fetch the ROM and start the emulator
+            fetch(romUrl)
+                .then(response => response.arrayBuffer())
+                .then(buffer => gba.loadRomFromFile(buffer))
+                .then(() => gba.runStable())
+                .catch(err => console.error('Failed to load ROM:', err));
+        });
+    </script>
 </body>
 </html>
